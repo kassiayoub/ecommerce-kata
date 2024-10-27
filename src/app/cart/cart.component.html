@@ -1,0 +1,28 @@
+<div class="product-list-link">
+  <a routerLink="/">Accueil</a>
+</div>
+
+
+<div *ngIf="cartItems.itemsCount > 0; else emptyCart" class="cart">
+  <div class="cart-items">
+    <div *ngFor="let cartItem of cartItems?.items | keyvalue" class="item">
+      <div class="item-detail">
+        <span>{{ cartItem?.value?.product?.productName }}</span>
+        <span>Quantité : {{ cartItem?.value?.quantity }}</span>
+        <span>Taxes : {{ cartItem?.value?.product?.taxAmount | number }} €</span>
+        <span>Prix unitaire HT : {{ cartItem?.value?.product?.price | number }} €</span>
+        <span>Prix unitaire TTC : {{ cartItem?.value?.product?.afterTaxPrice | number }} €</span>
+        <button (click)="deleteItem(cartItem.value)" title="supprimer" class="item-detail-red-minus-button">-</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-total-price">
+      <div class="cart-total-price-details">Total Taxes : {{ cartItems.taxAmount | number }} €</div>
+      <div class="cart-total-price-details">Total TTC : {{ cartItems.afterTaxPrice | number }} €</div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <p class="cart-empty">Panier vide</p>
+</ng-template>

@@ -1,0 +1,25 @@
+<div class="title">
+  <h1>Kata Panier</h1>
+</div>
+<div class="container">
+  <div class="filter">
+    <form [formGroup]="filterByCategoryFormGroup">
+      <label for="category-select">Catégorie: </label>
+      <select id="category-select" formControlName="category" (change)="onSelectCategory()">
+        <option [ngValue]="null"></option>
+        <option *ngFor="let category of categories" [ngValue]="category">{{ category }}</option>
+      </select>
+    </form>
+  </div>
+  <div class="cart-link">
+    <a routerLink="/cart">Panier: {{cartItemsCount$ | async }}</a>
+  </div>
+</div>
+
+<div class="product-list">
+  <app-product
+  *ngFor="let product of products"
+  [product]="product"
+  (addToCartEventEmitter)="addToCart($event)"
+  ></app-product>
+</div>

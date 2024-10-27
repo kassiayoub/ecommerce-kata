@@ -1,0 +1,19 @@
+<p class="card-title">{{product.productName}}</p>
+<p>Catégorie: {{product.category}}</p>
+<p>Prix: {{ product.price | number }} €</p>
+<p>quantité restante au stock: {{ product.quantity }}</p>
+
+<div >
+  <form [formGroup]="addToCartFormGroup" class="container">
+    <div *ngIf="product.quantity < 1; else available">
+      <p> non disponible</p>
+    </div>
+    <ng-template #available>
+      <input type="number" min="1" [max]="product.quantity" class="quantity-input" formControlName="quantity"/>
+    </ng-template>
+
+    <button class="add-button" (click)="addToCart($event)" [disabled]="product.quantity < 1 || !addToCartFormGroup.valid">
+      Ajouter
+    </button>
+  </form>
+</div>

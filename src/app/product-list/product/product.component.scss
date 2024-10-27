@@ -1,0 +1,44 @@
+@import '../../../../common.scss';
+:host {
+  flex: 0 0 calc(33.33% - 20px);
+  margin: 10px;
+  background-color: $color-light-orange;
+  color: $color-blue;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid $color-dark-orange;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: auto;
+    max-width: 90%;
+  }
+
+  .quantity-input{
+    width: 80px;
+    height: 35px;
+  }
+
+  .add-button{
+    background-color: $color-green;
+    width: 69px;
+    height: 43px;
+    border-radius: 6px;
+    font-size: 16px;
+    border-color: $color-green;
+  }
+  .card-title{
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    flex: 0 0 100%;
+    margin: 1%;
+  }
+}
